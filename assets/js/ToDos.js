@@ -13,9 +13,13 @@ $("ul").on("click","span",function (event) {
 $("input[type='text']").keypress(function (event) {
     if(event.which === 13){
         var todoText= $(this).val();
-        $(this).val("");
 
-        $("ul").append("<li><span><i class=\'fa fa-trash\' aria-hidden=\'true\'></i></span>"+todoText+"</li>")
+        if(todoText.length<40) {
+            $(this).val("");
+            $("ul").append("<li><span><i class=\'fa fa-trash\' aria-hidden=\'true\'></i></span>" + todoText + "</li>")
+        }else{
+            window.alert("To-Do should be less than 30 letters");
+        }
     }
 
 })
