@@ -1,16 +1,17 @@
 <% include partials/header.ejs %>
 
+
 <div id="container">
     <h1>To-Do List<i class="fa fa-plus" style="float:right" aria-hidden="true"></i></h1>
-    <form method="post" action="/todos">
-        <input type="text" name="todo[text]" placeholder="Add a new ToDo">
-    </form>
+        <input type="text" name="text" placeholder="Add a new ToDo">
     <ul>
         <% todos.forEach(function (todo) { %>
-            <li><span><i class="fa fa-trash" aria-hidden="true"></i></span><%= todo.todo%></li>
+            <li><span id="<%= todo._id%>"><i class="fa fa-trash" aria-hidden="true"></i></span><%= todo.todo%></li>
         <%})%>
     </ul>
 
 </div>
+
+
 
 <% include partials/footer.ejs %>

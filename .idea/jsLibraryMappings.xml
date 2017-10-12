@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{ToDoList/node_modules}" />
-    <file url="file://$PROJECT_DIR$/public/assets/js/ToDos.js" libraries="{jquery, jquery-ui}" />
+    <file url="file://$PROJECT_DIR$/public/assets/js/ToDos.js" libraries="{jquery, jquery-3.2.1.slim, jquery-ui}" />
     <file url="PROJECT" libraries="{ToDoList/node_modules, jQuery-2.0.0, jquery, jquery-ui}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>

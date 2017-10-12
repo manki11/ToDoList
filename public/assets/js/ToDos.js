@@ -1,13 +1,23 @@
+"use strict";
 // Check of specific todos
 $("ul").on("click","li",function () {
-    $(this).toggleClass("completed")
-})
+    $(this).toggleClass("completed");
+});
 
 $("ul").on("click","span",function (event) {
-    $(this).parent().fadeOut( 500, function() {
-        $(this).remove();
+    var id = $(this).attr('id');
+    var span= this;
+
+    $.post("/todos/delete",{id:id}, function (data,status,xhr) {
+        if(data.isSuccess === 1) {
+            // window.alert(data.isSuccess+"    "+ status);
+            $(span).parent().fadeOut(500, function () {
+                $(span).remove();
+            });
+            event.stopPropagation();
+        }
     });
-    event.stopPropagation();
+
 })
 
 $("input[type='text']").keypress(function (event) {
@@ -16,12 +26,16 @@ $("input[type='text']").keypress(function (event) {
 
         if(todoText.length<40) {
             $(this).val("");
-            $("ul").append("<li><span><i class=\'fa fa-trash\' aria-hidden=\'true\'></i></span>" + todoText + "</li>")
+            $.post("/todos",{text:todoText}, function (data, status,xhr) {
+                if(status ==="success"){
+                    location.reload();
+                }
+            });
+
         }else{
             window.alert("To-Do should be less than 30 letters");
         }
     }
-
 });
 
 $(".fa-plus").click(function () {
@@ -31,3 +45,4 @@ $(".fa-plus").click(function () {
 $("ul").sortable({
     placeholder: "ui-state-highlight"
 });
+

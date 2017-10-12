@@ -49,6 +49,33 @@ app.get("/todos", function (req, res) {
     });
 });
 
+//CREATE
+app.post("/todos", function (req, res) {
+    console.log(req.body);
+    ToDo.create({
+        todo:req.body.text,
+        strike:false
+    }, function (err, todo) {
+        if(err){
+            console.log(err);
+        }else{
+            console.log(todo);
+            res.send({todo:todo});
+        }
+    });
+});
+
+//DELETE
+app.post("/todos/delete", function (req, res) {
+    console.log(req.body.id);
+    ToDo.findByIdAndRemove(req.body.id, function (err) {
+        if(err){
+            console.log(err);
+        }else{
+            res.send({isSuccess:1});
+        }
+    });
+});
 
 
 
