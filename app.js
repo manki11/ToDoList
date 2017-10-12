@@ -77,9 +77,27 @@ app.post("/todos/delete", function (req, res) {
     });
 });
 
+//STRIKE
+app.post("/todos/strike", function (req, res) {
+    console.log(req.body.result.id);
+    console.log(req.body.result.strike);
+
+    var val = (req.body.result.strike === "true");
+    console.log(val);
+    
+
+    ToDo.findByIdAndUpdate(req.body.result.id,{ '$set': { strike: val } },function (err, todo) {
+        if(err){
+            console.log(err);
+        }else{
+            res.send({val:val});
+        }
+    });
+    
+});
 
 
 app.listen(3333, function () {
     console.log("ToDos is online!");
-})
+});
 

@@ -6,7 +6,7 @@
         <input type="text" name="text" placeholder="Add a new ToDo">
     <ul>
         <% todos.forEach(function (todo) { %>
-            <li><span id="<%= todo._id%>"><i class="fa fa-trash" aria-hidden="true"></i></span><%= todo.todo%></li>
+            <li id="<%= todo._id%>" class="<%if(todo.strike){%>completed<%}%>"><span id="<%= todo._id%>"><i class="fa fa-trash" aria-hidden="true"></i></span><%= todo.todo%></li>
         <%})%>
     </ul>
 
